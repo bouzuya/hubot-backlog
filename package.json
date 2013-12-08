@@ -1,0 +1,23 @@
+{
+  "name": "hubot-backlog",
+  "version": "0.1.0",
+  "description": "Hubot scripts for Backlog",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bouzuya/hubot-backlog.git"
+  },
+  "author": "bouzuya",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/bouzuya/hubot-backlog/issues"
+  },
+  "homepage": "https://github.com/bouzuya/hubot-backlog",
+  "dependencies": {
+    "backlog-api": "~0.2.0",
+    "async": "~0.2.9"
+  }
+}
