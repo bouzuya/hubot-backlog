@@ -1,6 +1,6 @@
 {
   "name": "hubot-backlog",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Hubot scripts for Backlog",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/bouzuya/hubot-backlog",
   "dependencies": {
-    "backlog-api": "~0.2.0",
+    "backlog-api": "~0.7.0",
     "async": "~0.2.9"
   }
 }
