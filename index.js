@@ -13,6 +13,7 @@
 //   hubot backlog projects - list backlog projects.
 //   hubot backlog issues <projectKey> [<username>] - list backlog issues.
 //   hubot backlog users <projectKey> - list backlog users.
+//   hubot backlog components <projectKey> - list backlog components.
 //
 // Author:
 //   bouzuya
@@ -129,6 +130,45 @@ var listUsers = function(msg) {
   });
 };
 
+var listComponents = function(msg) {
+  var projectKey = msg.match[1];
+
+  var backlog = backlogApi();
+  var project = null;
+  var components = null;
+  var tasks = [];
+  tasks.push(function(next) {
+    backlog.getProject({
+      projectKey: projectKey
+    }, function(err, p) {
+      if (err) return next(err);
+      project = p;
+      next();
+    });
+  });
+  tasks.push(function(next) {
+    backlog.getComponents({ projectId: project.id }, function(err, c) {
+      if (err) return next(err);
+      components = c;
+      return next(null);
+    });
+  });
+  tasks.push(function(next) {
+    var messages = [];
+    messages.push('count=' + components.length);
+    messages = messages.concat(components.map(function(i) {
+      return i.name;
+    }));
+    var message = messages.join('\n');
+    next(null, message);
+  });
+  async.waterfall(tasks, function(err, message) {
+    if (err) return msg.send(err);
+    msg.send(message);
+  });
+};
+
+
 module.exports = function(robot) {
 
   robot.respond(/backlog projects\s*$/i, function(msg) {
@@ -144,6 +184,11 @@ module.exports = function(robot) {
   robot.respond(/backlog users (\S+)\s*$/i, function(msg) {
     msg.send(msg.match[0] + '...');
     listUsers(msg);
+  });
+
+  robot.respond(/backlog components (\S+)\s*$/i, function(msg) {
+    msg.send(msg.match[0] + '...');
+    listComponents(msg);
   });
 
 };
