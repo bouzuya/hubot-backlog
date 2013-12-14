@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/bouzuya/hubot-backlog",
   "dependencies": {
-    "backlog-api": "~0.6.0",
+    "backlog-api": "~0.7.0",
     "async": "~0.2.9"
   }
 }

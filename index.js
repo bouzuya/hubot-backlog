@@ -16,6 +16,7 @@
 //   hubot backlog users <projectKey> - list backlog users.
 //   hubot backlog issues <projectKey> [<username>] - list backlog issues.
 //   hubot backlog issuetypes <projectKey> - list backlog issuetypes.
+//   hubot backlog comments <issueKey> - list backlog comments.
 //
 // Author:
 //   bouzuya
@@ -53,6 +54,11 @@ module.exports = function(robot) {
   robot.respond(/backlog\s+issuetypes\s+(\S+)\s*$/i, function(msg) {
     msg.send(msg.match[0] + '...');
     backlog.issuetypes(msg);
+  });
+
+  robot.respond(/backlog\s+comments\s+(\S+)\s*$/i, function(msg) {
+    msg.send(msg.match[0] + '...');
+    backlog.comments(msg);
   });
 };
 
